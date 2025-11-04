@@ -1,4 +1,4 @@
-import requests
+mport requests
 from bs4 import BeautifulSoup
 import argparse
 
@@ -42,3 +42,4 @@ args = parser.parse_args()
 crtsh = crtShClass(args.domain)
 crtsh.run()
 crtsh.printSubdomains()
+
