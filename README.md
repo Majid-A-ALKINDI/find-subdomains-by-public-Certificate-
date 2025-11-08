@@ -28,7 +28,11 @@ Install dependencies:
 ```bash
 pip install requests beautifulsoup4
 
+```
 
 ### 🔧 exeute 
+
 run:
+```bash
 python crt.py -d example.com
+```
