@@ -8,7 +8,7 @@ A lightweight Python tool designed to extract and list subdomains associated wit
 
 **find-subdomains-by-public-Certificates** helps security researchers and penetration testers to passively discover subdomains for a target organization by analyzing issued SSL/TLS certificates from public CT logs.  
 
-The tool automates fetching certificate data from **crt.sh**, parsing it, and printing unique subdomains in a clean list. It’s particularly useful during the **passive reconnaissance** phase of penetration testing, red teaming, or bug bounty assessments.
+The tool automates fetching certificate data from **crt.sh**, parsing it, and printing unique subdomains in a clean list. It’s particularly useful during the **passive reconnaissance** phase of penetration testing.
 
 ---
 
