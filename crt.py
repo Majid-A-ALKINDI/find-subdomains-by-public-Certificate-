@@ -1,45 +1,48 @@
-import requests
-from bs4 import BeautifulSoup
-import argparse
+# find-subdomains-by-public-Certificate-
 
+A lightweight Python tool designed to extract and list subdomains associated with a given domain by querying public Certificate Transparency logs from [crt.sh](https://crt.sh).
 
-class crtShClass:
-    def __init__(self, domain):
-        self.url = "https://crt.sh/?q=%25." + domain
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0'
-        }
-        self.cookies = {}
-        self.foundURLsList = []
+---
 
-    def subdomainScrape(self):
-        r = requests.get(self.url, headers=self.headers, timeout=10)
-        soup = BeautifulSoup(r.content, 'html.parser')
+## 📜 Description
 
-        tableRows = soup.find_all('table')[2].find_all('tr')
+**find-subdomains-by-public-Certificates** helps security researchers and penetration testers to passively discover subdomains for a target organization by analyzing issued SSL/TLS certificates from public CT logs.  
 
-        for row in tableRows:
-            try:
-                subdomain = row.find_all('td')[4].text
-                subdomain = subdomain.replace("*.", "")
-                if subdomain not in self.foundURLsList:
-                    self.foundURLsList.append(subdomain)
-            except Exception:
-                pass
+The tool automates fetching certificate data from **crt.sh**, parsing it, and printing unique subdomains in a clean list. It’s particularly useful during the **passive reconnaissance** phase of penetration testing.
 
-    def run(self):
-        self.subdomainScrape()
+---
 
-    def printSubdomains(self):
-        for subdomain in self.foundURLsList:
-            print(subdomain)
+## ⚙️ Features
+- Queries `crt.sh` for certificates issued to the target domain  
+- Extracts and lists all unique subdomains  
+- Removes wildcard prefixes automatically (`*.`)  
+- Simple command-line interface  
+- No API keys required  
 
+---
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--domain", help="Domain Name; EX: example.com")
-args = parser.parse_args()
+## 🚀 Usage
 
-crtsh = crtShClass(args.domain)
-crtsh.run()
-crtsh.printSubdomains()
+### 🔧 Requirements
+Install dependencies:
+```bash
+pip install requests
 
+```
+
+### 🔧 Execute
+
+run:
+```bash
+python crt.py -d example.com
+```
+
+Optional timeout flag:
+```bash
+python crt.py -d example.com -t 20
+```
+
+Optional timeout retry flags:
+```bash
+python crt.py -d example.com -t 20 -r 5 --retry-backoff 1.5
+```
