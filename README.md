@@ -26,13 +26,23 @@ The tool automates fetching certificate data from **crt.sh**, parsing it, and pr
 ### 🔧 Requirements
 Install dependencies:
 ```bash
-pip install requests beautifulsoup4
+pip install requests
 
 ```
 
-### 🔧 exeute 
+### 🔧 Execute
 
 run:
 ```bash
 python crt.py -d example.com
+```
+
+Optional timeout flag:
+```bash
+python crt.py -d example.com -t 20
+```
+
+Optional timeout retry flags:
+```bash
+python crt.py -d example.com -t 20 -r 5 --retry-backoff 1.5
 ```
